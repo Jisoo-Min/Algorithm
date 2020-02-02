@@ -1,37 +1,51 @@
 #include <iostream>
-#include <vector>
-#include <algorithm>
+
 using namespace std;
 
 
+long long answer[1000001];
 
-int add_num(int n, int sum)
-{
-
-	int count = 0;
-	if(sum == n) return 1;
-	if(sum < n){
-		count += add_num(n, sum+1);
-		count += add_num(n, sum+2);
-		count += add_num(n, sum+3);
-
-	}
-	
-	return count;
-}
-
+long long inputs[1000001];
 
 
 int main()
 {
 
-	int num_int;
-	cin >> num_int;
+	long long t, n;
+	scanf("%d", &t);
 
-	int n;
-	for(int i = 0; i < num_int; i++){
-		cin  >> n;
-		cout << add_num(n, 0)<< "\n";
+	for(int i = 0; i < t; i++)
+	{
+		cin >> inputs[i];
+	}
+
+
+	answer[0] = 1;
+	answer[1] = 1;
+	answer[2] = 2;
+	answer[3] = 4;
+
+
+	for(int i = 4; i < 1000001; i++)
+	{
+		answer[i] = answer[i-3] + answer[i-2] + answer[i-1];
+		answer[i] %= 1000000009;
+	}
+
+	// 1
+
+	// 1 1
+	// 2
+
+	// 1 1 1
+	// 1 2
+	// 2 1
+	// 3
+
+
+	for(int i = 0; i < t; i++)
+	{
+		printf("%d\n", answer[inputs[i]]);
 	}
 
 	return 0;

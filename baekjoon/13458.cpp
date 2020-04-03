@@ -19,7 +19,7 @@ int main()
 	{
 		ans += 1;
 		if(people[i] <= B)
-			break;
+			continue;
 
 		int sub_dir = (people[i] - B) / C;
 		ans += sub_dir;
